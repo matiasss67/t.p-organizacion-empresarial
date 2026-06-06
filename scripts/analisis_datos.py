@@ -56,3 +56,43 @@ plt.savefig(
 )
 
 print("Proceso finalizado.")
+
+# Facturación por producto
+
+facturacion_producto = (
+    ventas.groupby("producto")["total"]
+    .sum()
+)
+
+print("\nFACTURACION POR PRODUCTO")
+print(facturacion_producto)
+
+# Producto con mayor facturación
+
+mayor_facturacion = (
+    facturacion_producto.idxmax()
+)
+
+print(
+    "\nPRODUCTO CON MAYOR FACTURACION:",
+    mayor_facturacion
+)
+
+# Gráfico adicional
+
+facturacion_producto.plot(
+    kind="bar"
+)
+
+plt.title(
+    "Facturacion por producto"
+)
+
+plt.xlabel("Producto")
+plt.ylabel("Facturacion")
+
+plt.tight_layout()
+
+plt.savefig(
+    "../resultados/grafico_productos.png"
+)
